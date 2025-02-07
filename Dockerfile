@@ -1,12 +1,17 @@
 # Use an official OpenJDK runtime as a parent image
 FROM openjdk:19-jdk
 
- 
-# Copy the built jar file into the container
-COPY target/Job-*.jar /Job-Portal-Application.jar
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the project files into the container
+COPY . .
+
+# Build the application (for Maven projects)
+RUN ./mvnw clean package -DskipTests
 
 # Expose the application port
 EXPOSE 8080
 
 # Run the application
-CMD ["java", "-jar", "/Job-Portal-Application.jar"]
+CMD ["java", "-jar", "target/Job-Portal-Application.jar"]
