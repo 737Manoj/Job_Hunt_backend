@@ -17,7 +17,7 @@ RUN ./mvnw clean package -DskipTests
 RUN cp target/*.jar app.jar
 
 # Expose the application port
-EXPOSE 8080
+EXPOSE 10000
 
 # Run the application, using the port assigned by Render
 CMD ["java", "-jar", "app.jar", "--server.port=${PORT}"]
