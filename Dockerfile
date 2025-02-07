@@ -10,11 +10,14 @@ COPY . .
 # Give execution permission to mvnw
 RUN chmod +x mvnw
 
-# Build the application (for Maven projects)
+# Build the application
 RUN ./mvnw clean package -DskipTests
+
+# Copy the built JAR to the app directory
+RUN cp target/*.jar app.jar
 
 # Expose the application port
 EXPOSE 8080
 
 # Run the application
-CMD ["java", "-jar", "target/Job-Portal-Application.jar"]
+CMD ["java", "-jar", "app.jar"]
