@@ -20,7 +20,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/application")
-
 public class ApplicationController {
 
     @Autowired
